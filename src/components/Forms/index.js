@@ -1,38 +1,67 @@
 import TextBox from "../TextBox";
 import DropdownList from "../Dropdown List";
 import Button from "../Button";
+import { useState } from "react";
 import "./Forms.css";
 
-const Forms = () => {
-
+const Forms = (props) => {
   const times = [
-    'Programação',
-    'Front-End',
-    'Data Science',
-    'Devops',
-    'UX e Design',
-    'Mobile',
-    ' Inovação e Gestão'
-    ]
+    "Programação",
+    "Front-End",
+    "Data Science",
+    "Devops",
+    "UX e Design",
+    "Mobile",
+    " Inovação e Gestão",
+  ];
 
-    const onSubmit = (event) => {
-      event.preventDefault(); // Previne o comportamento padrão do formulário (refresh)
-      console.log("Form foi submetido")
-    }
+  const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+  const [image, setImage] = useState("");
+  const [team, setTeam] = useState("");
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    props.toTheRegisteredCollaborator({
+      name,
+      position,
+      image,
+      team,
+    });
+  };
 
   return (
     <section className="form">
       <form onSubmit={onSubmit}>
-        <h2>
-          Preencha os dados para criar o card do colaborador.
-        </h2>
-        <TextBox mandatory={true} label="Nome"  placeholder="Digite seu nome" />
-        <TextBox mandatory={true} label="Cargo" placeholder="Digite seu cargo" />
-        <TextBox label="Imagem" placeholder="Informe o endereço da imagem" />
-        <DropdownList mandatory={true} label="Time" items={times}/>
-        <Button>
-          Criar Card
-        </Button>
+        <h2>Preencha os dados para criar o card do colaborador.</h2>
+        <TextBox
+          mandatory={true}
+          label="Nome"
+          placeholder="Digite seu nome"
+          value={name}
+          whenModified={(value) => setName(value)}
+        />
+        <TextBox
+          mandatory={true}
+          label="Cargo"
+          placeholder="Digite seu cargo"
+          value={position}
+          whenModified={(value) => setPosition(value)}
+        />
+        <TextBox
+          label="Imagem"
+          placeholder="Informe o endereço da imagem"
+          value={image}
+          whenModified={(value) => setImage(value)}
+        />
+        <DropdownList
+          mandatory={true}
+          label="Time"
+          items={times}
+          value={team}
+          whenModified={(value) => setTeam(value)}
+        />
+        <Button>Criar Card</Button>
       </form>
     </section>
   );
