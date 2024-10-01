@@ -1,4 +1,4 @@
-import "./TextBox.css";
+import "./TextBox.css"
 
 const TextBox = (props) => {
   const modifiedPlaceholder = `${props.placeholder}...`;

@@ -9,7 +9,9 @@ const DropdownList = (props) => {
       <select
         onChange={(event) => props.whenModified(event.target.value)}
         required={props.mandatory}
+        value={props.value}
       >
+      <option value=""></option>
         {props.items.map((item) => (
           <option key={item}>{item}</option>
         ))}
