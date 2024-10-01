@@ -3,15 +3,16 @@ import "./Team.css";
 
 const Team = (props) => {
   const css = { backgroundColor: props.secondaryColor };
+  const collaborators = props.collaborators || []; // Definindo um valor padrão
 
-  return props.collaborators.length > 0 ? (
+  return collaborators.length > 0 ? (
     <section className="team" style={css}>
       <h3 style={{ borderColor: props.primaryColor }}>{props.name}</h3>
       <div className="collaborators">
-        {props.collaborators.map((collaborator) => (
-          <collaborator
+        {collaborators.map((collaborator) => (
+          <Collaborator // Corrigindo para usar o componente correto
             backgroundColor={props.primaryColor}
-            key={Collaborator.name}
+            key={collaborator.name} // Corrigindo para usar o nome do colaborador
             name={collaborator.name}
             position={collaborator.position}
             image={collaborator.image}
@@ -23,5 +24,6 @@ const Team = (props) => {
     ""
   );
 };
+
 
 export default Team;

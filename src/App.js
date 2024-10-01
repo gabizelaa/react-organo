@@ -5,7 +5,6 @@ import Forms from "./components/Forms";
 import Team from "./components/Team";
 import Footer from "./components/Footer";
 
-
 function App() {
   const teams = [
     {
@@ -66,12 +65,10 @@ function App() {
           name={team.name}
           primaryColor={team.primaryColor}
           secondaryColor={team.secondaryColor}
-          collaborators={collaborators.filter(
-            (collaborator) => collaborator.name === team.name
-          )}
+          collaborators={collaborators.filter((c) => c.team === team.name)} 
         />
       ))}
-      <Footer/>
+      <Footer />
     </div>
   );
 }
